@@ -1,0 +1,21 @@
+{
+  "name": "yy-spider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "main": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gitPush": "git add -A && git commit -m \"npm auto commit\" && git pull && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:zzy20150710/yy-spider.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crawler": "^1.3.0"
+  }
+}
