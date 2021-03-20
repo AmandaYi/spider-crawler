@@ -5,14 +5,14 @@ const Crawler = require("crawler");
 const w = require("../model/word")
 const path = require("path")
 const { sleep } = require("./../util/util")
-let c = null 
+let c = null
 function word(uri = "") {
-   c = new Crawler({
+  c = new Crawler({
     maxConnections: 11,
-    callback: (err,res,done)=>{
-      if(err){
+    callback: (err, res, done) => {
+      if (err) {
         console.log(err)
-      }else{
+      } else {
         console.log("OK")
       }
       done()
@@ -70,7 +70,7 @@ function getContent(url) {
           textList.push($(this).text().replace(/\r|\n|\t|/igm, "").replace(' ', ""))
         })
         formatWord(title, textList)
-        formatWordWith(title, textList)
+        // formatWordWith(title, textList)
       }
     }
   })
@@ -79,7 +79,7 @@ function getContent(url) {
 // 处理成word
 function formatWord(title, textList) {
   // 文件保存的路径
-  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/wuwenxian/")}2021${title}范文.doc`
+  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/lunwenstudy/")}2021${title}范文.doc`
   // 文件的标题
   let wTitle = `2021${title}范文`
   // 文件的内容
