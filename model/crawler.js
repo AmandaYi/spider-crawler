@@ -1,8 +1,7 @@
 const Crawler = require("crawler");
 
 const c = new Crawler({
-  // maxConnections: 11,
-  rateLimit: 300,
+  maxConnections: 11,
   callback: (err,res,done)=>{
     if(err){
       console.log(err)

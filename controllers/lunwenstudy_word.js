@@ -1,8 +1,23 @@
-const c = require("./../model/crawler")
-const w = require("./../model/word")
-const path = require("path")
-function word(uri = "") {
+const Crawler = require("crawler");
 
+
+
+const w = require("../model/word")
+const path = require("path")
+const { sleep } = require("./../util/util")
+let c = null 
+function word(uri = "") {
+   c = new Crawler({
+    maxConnections: 11,
+    callback: (err,res,done)=>{
+      if(err){
+        console.log(err)
+      }else{
+        console.log("OK")
+      }
+      done()
+    }
+  })
   c.queue([{
     uri: uri,
     callback: function (error, res, done) {
@@ -14,23 +29,23 @@ function word(uri = "") {
       done();
     }
   }]);
-} 
+}
 // 得到列表信息
 function formatList($, body, res) {
   let listTitleUrl = []
   $(".wz_liebiao .title a").each(function () {
     let href = $(this).attr('href')
-    if(href.indexOf("www.lunwenstudy.com") > -1) {
-      listTitleUrl.push( href)
+    if (href.indexOf("www.lunwenstudy.com") > -1) {
+      listTitleUrl.push(href)
 
-    }else{
+    } else {
       listTitleUrl.push("http://www.lunwenstudy.com" + href)
 
     }
   })
 
   // getContent(listTitleUrl[0])
- 
+
   // 请求
   listTitleUrl.forEach(item => {
     getContent(item)
@@ -40,7 +55,7 @@ function formatList($, body, res) {
 
 
 
-function getContent(url) { 
+function getContent(url) {
   c.queue({
     uri: url,
     callback(error, res, done) {
@@ -64,13 +79,13 @@ function getContent(url) {
 // 处理成word
 function formatWord(title, textList) {
   // 文件保存的路径
-  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/wuwenxian/")}2021${title}范文.docx`
+  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/wuwenxian/")}2021${title}范文.doc`
   // 文件的标题
   let wTitle = `2021${title}范文`
   // 文件的内容
-  let wTextRunList =  []
-  for(let i = 0; i< textList.length ; i++) {
-    if(textList[i].indexOf("参考文献") > -1) {
+  let wTextRunList = []
+  for (let i = 0; i < textList.length; i++) {
+    if (textList[i].indexOf("参考文献") > -1) {
       break
     }
     wTextRunList.push(textList[i])
@@ -81,7 +96,7 @@ function formatWord(title, textList) {
 // 处理成word
 function formatWordWith(title, textList) {
   // 文件保存的路径
-  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/wenxian/")}2021${title}范文.docx`
+  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/wenxian/")}2021${title}范文.doc`
   // 文件的标题
   let wTitle = `2021${title}范文`
   // 文件的内容
@@ -90,19 +105,27 @@ function formatWordWith(title, textList) {
 }
 
 
+const config = [
+  // 学术堂 > 毕业论文 > 本科毕业论文 > 工商企业管理毕业论文STR
+  "http://www.lunwenstudy.com/biyelunwen/gsqygl/",
+  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_2.html",
+  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_3.html",
+  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_4.html",
+  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_5.html",
+  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_6.html",
+  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_7.html",
+  // 学术堂 > 毕业论文 > 本科毕业论文 > 工商企业管理毕业论文END
 
+]
 
+async function init(index) {
 
+  for (let i = 0; i < config.length; i++) {
+    await sleep()
+    word(config[i])
+  }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-module.exports = word
+module.exports = {
+  init
+}
