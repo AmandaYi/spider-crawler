@@ -79,7 +79,8 @@ function getContent(url) {
 // 处理成word
 function formatWord(title, textList) {
   // 文件保存的路径
-  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/lunwenstudy/")}2021${title}范文.doc`
+  let dirPath = `${path.join(__dirname, "..", "public", "uploads", "/lunwenstudy/")}`
+  let filename = `2021${title}范文.docx`
   // 文件的标题
   let wTitle = `2021${title}范文`
   // 文件的内容
@@ -90,31 +91,42 @@ function formatWord(title, textList) {
     }
     wTextRunList.push(textList[i])
   }
-  w.genFile(w.genWord(wTitle, wTextRunList), filepath)
+  w.genFile(w.genWord(wTitle, wTextRunList), dirPath, filename)
 }
 
-// 处理成word
-function formatWordWith(title, textList) {
-  // 文件保存的路径
-  let filepath = `${path.join(__dirname, "..", "public", "uploads", "/wenxian/")}2021${title}范文.doc`
-  // 文件的标题
-  let wTitle = `2021${title}范文`
-  // 文件的内容
-  let wTextRunList = textList
-  w.genFile(w.genWord(wTitle, wTextRunList), filepath)
-}
+// // 处理成word
+// function formatWordWith(title, textList) {
+//   // 文件保存的路径
+//   let filepath = `${path.join(__dirname, "..", "public", "uploads", "/wenxian/")}2021${title}范文.doc`
+//   // 文件的标题
+//   let wTitle = `2021${title}范文`
+//   // 文件的内容
+//   let wTextRunList = textList
+//   w.genFile(w.genWord(wTitle, wTextRunList), filepath)
+// }
 
 
 const config = [
   // 学术堂 > 毕业论文 > 本科毕业论文 > 工商企业管理毕业论文STR
-  "http://www.lunwenstudy.com/biyelunwen/gsqygl/",
-  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_2.html",
-  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_3.html",
-  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_4.html",
-  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_5.html",
-  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_6.html",
-  "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_7.html",
+  // "http://www.lunwenstudy.com/biyelunwen/gsqygl/",
+  // "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_2.html",
+  // "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_3.html",
+  // "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_4.html",
+  // "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_5.html",
+  // "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_6.html",
+  // "http://www.lunwenstudy.com/biyelunwen/gsqygl/list_970_7.html",
   // 学术堂 > 毕业论文 > 本科毕业论文 > 工商企业管理毕业论文END
+
+  // 学术堂 > 毕业论文 > mba论文 > mba论文选题与题目STR
+  "http://www.lunwenstudy.com/mba/mbaxttm/",
+  "http://www.lunwenstudy.com/mba/mbaxttm/list_891_2.html",
+  "http://www.lunwenstudy.com/mba/mbaxttm/list_891_3.html",
+  "http://www.lunwenstudy.com/mba/mbaxttm/list_891_4.html",
+  "http://www.lunwenstudy.com/mba/mbaxttm/list_891_5.html",
+  "http://www.lunwenstudy.com/mba/mbaxttm/list_891_6.html",
+  "http://www.lunwenstudy.com/mba/mbaxttm/list_891_7.html",
+  // 学术堂 > 毕业论文 > mba论文 > mba论文选题与题目END
+
 
 ]
 

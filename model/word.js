@@ -1,4 +1,5 @@
 const fs = require("fs")
+const path = require("path")
 const { Document, Packer, Paragraph, TextRun, HeadingLevel, Alignment, AlignmentType, ShadingType } = require("docx")
 
 /**
@@ -56,11 +57,12 @@ function genWord(wTitle = "", wTextRunList = []) {
   });
   return doc
 }
-function genFile(doc, filepath) {
-
+function genFile(doc, dirPath, filename) {
+  // 文件路径
+  fs.mkdirSync(path.join(dirPath), {recursive: true})
   Packer.toBuffer(doc).then((buffer) => {
-    fs.writeFileSync(filepath, buffer);
-    console.log("写入",filepath)
+    fs.writeFileSync(path.join(dirPath , filename), buffer);
+    console.log("写入",path.join(dirPath , filename))
   });
 
 }

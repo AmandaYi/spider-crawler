@@ -22,5 +22,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-public/uploads/wenxian
-public/uploads/wuwenxian
+public/uploads/*
+# public/uploads/
