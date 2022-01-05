@@ -7,8 +7,8 @@ const lunwenstudy_listpage = require("./controllers/lunwenstudy_listpage")
 const { sleep } = require("./util/util")
 
 // 基于范文页面初始化配置
-lunwenstudy_word.initConfig();
-// lunwenstudy_word.init();
+// lunwenstudy_word.initConfig();
+lunwenstudy_word.init();
 
 
 // lunwenstudy_listpage.getListPageUrl().then(v=>{
